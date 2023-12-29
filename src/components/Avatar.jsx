@@ -6,15 +6,52 @@ import React, { useRef, useEffect } from "react";
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 
 export function Avatar(props) {
-  const group = useRef()
+  const group = useRef();
   const { nodes, materials } = useGLTF("/avatar.glb");
-  const {animations: typingAnimation} = useFBX("animations/test.fbx")
+  const { animations: down } = useFBX("animations/Back.fbx");
+  const { animations: left } = useFBX("animations/Left.fbx");
+  const { animations: right } = useFBX("animations/Right.fbx");
+  const { animations: animation } = useFBX("animations/Forward.fbx");
 
-  typingAnimation[0].name = 'test'
-  const {actions} = useAnimations(typingAnimation, group)
-  useEffect(()=> {
-    actions['test'].reset().play()
-  })
+  animation[1] = down[0];
+  animation[2] = left[0];
+  animation[3] = right[0];
+  animation[0].name = "up";
+  animation[1].name = "down";
+  animation[2].name = "left";
+  animation[3].name = "right";
+
+  const { actions } = useAnimations(animation, group);
+  addEventListener("keydown", (key) => {
+    switch (key.key) {
+      case "ArrowUp":
+        actions["up"].reset().play();
+        actions["down"].reset().stop();
+        actions["left"].reset().stop();
+        actions["right"].reset().stop();
+        break;
+      case "ArrowDown":
+        actions["down"].reset().play();
+        actions["up"].reset().stop();
+        actions["left"].reset().stop();
+        actions["right"].reset().stop();
+        break;
+      case "ArrowLeft":
+        actions["left"].reset().play();
+        actions["down"].reset().stop();
+        actions["up"].reset().stop();
+        actions["right"].reset().stop();
+        break;
+      case "ArrowRight":
+        actions["right"].reset().play();
+        actions["down"].reset().stop();
+        actions["left"].reset().stop();
+        actions["up"].reset().stop();
+        break;
+    }
+  });
+  
+
   return (
     <group {...props} ref={group} dispose={null}>
       <primitive object={nodes.Hips} />
@@ -101,6 +138,3 @@ export function Avatar(props) {
 }
 
 useGLTF.preload("/avatar.glb");
-
-
-
