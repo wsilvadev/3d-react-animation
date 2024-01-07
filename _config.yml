@@ -1,0 +1,7 @@
+title: Meu Blog Jekyll
+email: wsilvadev@gmail.com
+description: >-
+  Este é um blog incrível criado com Jekyll.
+baseurl: "" # Isso representa a subpasta do seu site. Deixe vazio se o site estiver na raiz.
+url: "https://wsilvadev.github.io/" # URL do seu site.
+destination: dist

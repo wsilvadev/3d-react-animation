@@ -24,35 +24,7 @@ export function Avatar(props) {
      //group.current.getObjectByName('Spine2').lookAt(target)
   })
 
-  addEventListener("keydown", (key) => {
-    switch (key.key) {
-      case "ArrowUp":
-        actions["up"].reset().play();
-        actions["down"].reset().stop();
-        actions["left"].reset().stop();
-        actions["right"].reset().stop();
-        break;
-      case "ArrowDown":
-        actions["down"].reset().play();
-        actions["up"].reset().stop();
-        actions["left"].reset().stop();
-        actions["right"].reset().stop();
-        break;
-      case "ArrowLeft":
-        actions["left"].reset().play();
-        actions["down"].reset().stop();
-        actions["up"].reset().stop();
-        actions["right"].reset().stop();
-        break;
-      case "ArrowRight":
-        actions["right"].reset().play();
-        actions["down"].reset().stop();
-        actions["left"].reset().stop();
-        actions["up"].reset().stop();
-        break;
 
-    }
-  });
   
 useEffect(()=> {
         actions["hiphop"].reset().play();
