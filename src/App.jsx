@@ -1,12 +1,24 @@
-import { Canvas } from "@react-three/fiber";
-import { Experience } from "./components/Experience";
-
+import React, { useState, useEffect } from "react";
+import Loading from "./components/Loading";
 function App() {
+  const [isLoading, setLoading] = useState(false);
+  if (isLoading) {
+    return (
+      <>
+        <Loading />
+        <button className="btn" onClick={() => setLoading(!isLoading)}>
+          clique para desativar o loading
+        </button>
+      </>
+    ); // Pode substituir por um componente de loading mais elaborado
+  }
+
   return (
-    <Canvas shadows camera={{ position: [0, 0, 10], fov: 30 }}>
-      <color attach="background" args={["#ececec"]} />
-      <Experience />
-    </Canvas>
+    <>
+      <button className="btn" onClick={() => setLoading(!isLoading)}>
+        clique para ativar o loading
+      </button>
+    </>
   );
 }
 
